@@ -3,4 +3,5 @@
     
     <string name="fetch_record">전적갱신</string>
     <string name="recent_20th_games">최근 20게임 분석</string>
+    <string name="divider_slush">/</string>
 </resources>
