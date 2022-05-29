@@ -5,4 +5,6 @@ data class League(
     val wins: Int,
     val losses: Int,
     val tierRank: TierRank
-)
+) {
+    fun record(): String = "${wins}승 ${losses}패 (${(wins.toFloat() / losses * 100).toInt()}%)"
+}
