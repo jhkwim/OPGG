@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="league"
+            type="com.jhkwim.opggassignment.info.repository.model.summoner.League" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="240dp"
+            android:layout_height="82dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_tier"
+                imageFromUrl="@{league.tierRank.imageUrl}"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginBottom="17dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_league_type"
+                style="@style/TextStyle4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:text="@{league.tierRank.name}"
+                app:layout_constraintStart_toEndOf="@+id/iv_tier"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_league_tier"
+                style="@style/TextStyle5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{league.tierRank.tier}"
+                app:layout_constraintStart_toStartOf="@+id/tv_league_type"
+                app:layout_constraintTop_toBottomOf="@+id/tv_league_type" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_league_lp"
+                style="@style/TextStyle6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{league.tierRank.formattedLP()}"
+                app:layout_constraintStart_toStartOf="@+id/tv_league_type"
+                app:layout_constraintTop_toBottomOf="@+id/tv_league_tier" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_league_record"
+                style="@style/TextStyle7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{league.record()}"
+                app:layout_constraintStart_toStartOf="@+id/tv_league_tier"
+                app:layout_constraintTop_toBottomOf="@+id/tv_league_lp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="21dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="21dp"
+                android:src="@drawable/ic_icon_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
+
