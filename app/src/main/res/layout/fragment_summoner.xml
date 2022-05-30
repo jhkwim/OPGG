@@ -56,14 +56,16 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_fetch"
+            style="@style/TextStyle3"
             android:layout_width="89dp"
             android:layout_height="36dp"
             android:layout_marginTop="8dp"
             android:background="@color/soft_blue"
-            android:fontFamily="Roboto-Regular"
             android:text="@string/fetch_record"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:gravity="center"
+            android:onClickListener="@{() -> viewModel.refresh()}"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 

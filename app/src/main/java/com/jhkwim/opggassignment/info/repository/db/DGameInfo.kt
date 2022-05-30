@@ -27,10 +27,10 @@ data class DGameInfo(
         }
     }
 
-    fun toSummoner(): GameInfo {
+    fun toGameInfo(): GameInfo {
         return GameInfo(
-            games,
             champions,
+            games,
             positions,
             summary
         )

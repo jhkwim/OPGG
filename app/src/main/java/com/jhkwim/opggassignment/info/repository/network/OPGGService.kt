@@ -2,7 +2,6 @@ package com.jhkwim.opggassignment.info.repository.network
 
 import com.google.gson.JsonObject
 import com.jhkwim.opggassignment.info.repository.model.game.GameInfo
-import com.jhkwim.opggassignment.info.repository.model.summoner.Summoner
 import com.jhkwim.opggassignment.info.repository.model.summoner.SummonerResult
 import retrofit2.http.GET
 import retrofit2.http.Path

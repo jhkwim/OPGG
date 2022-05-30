@@ -1,86 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_title_record"
-        style="@style/TextStyle7"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:text="@string/recent_20th_games"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_record"
-        style="@style/TextStyle7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_title_record"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title_record" />
+    <data>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_kill"
-        style="@style/TextStyle9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_title_record"
-        app:layout_constraintTop_toBottomOf="@+id/tv_record" />
+        <variable
+            name="gameInfo"
+            type="com.jhkwim.opggassignment.info.repository.model.game.GameInfo" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_divider_1"
-        style="@style/TextStyle9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/divider_slush"
-        app:layout_constraintStart_toEndOf="@+id/tv_kill"
-        app:layout_constraintTop_toTopOf="@+id/tv_kill" />
+    </data>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_assist"
-        style="@style/TextStyle20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_divider_1"
-        app:layout_constraintTop_toTopOf="@+id/tv_kill" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingStart="16dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_divider_2"
-        style="@style/TextStyle9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/divider_slush"
-        app:layout_constraintStart_toEndOf="@+id/tv_assist"
-        app:layout_constraintTop_toTopOf="@+id/tv_kill" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title_record"
+            style="@style/TextStyle7"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="@string/recent_20th_games"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_death"
-        style="@style/TextStyle9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_divider_2"
-        app:layout_constraintTop_toTopOf="@+id/tv_kill" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_record"
+            style="@style/TextStyle7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{gameInfo.summary.winsOrLosses()}"
+            app:layout_constraintStart_toStartOf="@+id/tv_title_record"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_record" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_ratio"
-        style="@style/TextStyle10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        app:layout_constraintStart_toStartOf="@+id/tv_kill"
-        app:layout_constraintTop_toBottomOf="@+id/tv_kill" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_kill"
+            style="@style/TextStyle9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@{gameInfo.avrKill()}"
+            app:layout_constraintStart_toStartOf="@+id/tv_title_record"
+            app:layout_constraintTop_toBottomOf="@+id/tv_record" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_percent"
-        style="@style/TextStyle20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tv_ratio"
-        app:layout_constraintTop_toTopOf="@+id/tv_ratio" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_divider_1"
+            style="@style/TextStyle9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/divider_slush"
+            app:layout_constraintStart_toEndOf="@+id/tv_kill"
+            app:layout_constraintTop_toTopOf="@+id/tv_kill" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_death"
+            style="@style/TextStyle20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{gameInfo.avrDeath()}"
+            app:layout_constraintStart_toEndOf="@+id/tv_divider_1"
+            app:layout_constraintTop_toTopOf="@+id/tv_kill" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_divider_2"
+            style="@style/TextStyle9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/divider_slush"
+            app:layout_constraintStart_toEndOf="@+id/tv_death"
+            app:layout_constraintTop_toTopOf="@+id/tv_kill" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_assists"
+            style="@style/TextStyle9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{gameInfo.avrAssist()}"
+            app:layout_constraintStart_toEndOf="@+id/tv_divider_2"
+            app:layout_constraintTop_toTopOf="@+id/tv_kill" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_ratio"
+            style="@style/TextStyle10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_kill"
+            app:layout_constraintTop_toBottomOf="@+id/tv_kill" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_percent"
+            style="@style/TextStyle20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/tv_ratio"
+            app:layout_constraintTop_toTopOf="@+id/tv_ratio" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title_rate"
+            style="@style/TextStyle8"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="@string/most_win_rate"
+            app:layout_constraintEnd_toStartOf="@+id/tv_title_position"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@+id/tv_title_record"
+            app:layout_constraintTop_toTopOf="@+id/tv_title_record" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_most_champ"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title_rate"
+            app:layout_constraintStart_toStartOf="@+id/tv_title_rate"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_rate" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_champ_rate"
+            style="@style/TextStyle11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_most_champ"
+            app:layout_constraintStart_toStartOf="@+id/iv_most_champ"
+            app:layout_constraintTop_toBottomOf="@+id/iv_most_champ" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title_position"
+            style="@style/TextStyle8"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/position"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_title_record" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_position"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title_position"
+            app:layout_constraintStart_toStartOf="@+id/tv_title_position"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_position" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_position_rate"
+            style="@style/TextStyle11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_position"
+            app:layout_constraintStart_toStartOf="@+id/iv_position"
+            app:layout_constraintTop_toBottomOf="@+id/iv_position" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

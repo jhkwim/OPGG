@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="game"
+            type="com.jhkwim.opggassignment.info.repository.model.game.Game" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_background_win"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@{game.win ? @color/soft_blue : @color/darkish_pink}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guide1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextStyle13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{game.win ? @string/win : @string/lose}"
+            app:layout_constraintBottom_toTopOf="@id/divider1"
+            app:layout_constraintEnd_toEndOf="@id/iv_background_win"
+            app:layout_constraintStart_toStartOf="@+id/iv_background_win"
+            app:layout_constraintTop_toTopOf="@id/iv_background_win" />
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/white_40"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_background_win"
+            app:layout_constraintEnd_toEndOf="@+id/iv_background_win"
+            app:layout_constraintStart_toStartOf="@+id/iv_background_win"
+            app:layout_constraintTop_toTopOf="@+id/iv_background_win" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_champ"
+            imageFromUrl="@{game.champion.imageUrl}"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@id/guide1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="@{game.stats.general.opScoreBadge}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_champ"
+            app:layout_constraintEnd_toEndOf="@id/iv_champ"
+            app:layout_constraintStart_toStartOf="@id/iv_champ"
+            app:layout_constraintTop_toBottomOf="@+id/iv_champ" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_spell_1"
+            imageFromUrl="@{game.getSpellUrl(0)}"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@id/iv_champ"
+            app:layout_constraintTop_toTopOf="@id/iv_champ" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_spell_2"
+            imageFromUrl="@{game.getSpellUrl(1)}"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toStartOf="@+id/iv_spell_1"
+            app:layout_constraintTop_toBottomOf="@+id/iv_spell_1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_peak_1"
+            imageFromUrl="@{game.getPeakUrl(0)}"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="2dp"
+            app:layout_constraintStart_toEndOf="@id/iv_spell_1"
+            app:layout_constraintTop_toTopOf="@id/iv_spell_1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_peak_2"
+            imageFromUrl="@{game.getPeakUrl(1)}"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toStartOf="@+id/iv_peak_1"
+            app:layout_constraintTop_toBottomOf="@+id/iv_peak_1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_kill"
+            style="@style/TextStyle15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{game.stats.general.strKill()}"
+            app:layout_constraintStart_toEndOf="@+id/iv_peak_1"
+            app:layout_constraintTop_toTopOf="@id/iv_champ" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_divider_1"
+            style="@style/TextStyle19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/divider_slush"
+            app:layout_constraintStart_toEndOf="@+id/tv_kill"
+            app:layout_constraintTop_toTopOf="@+id/tv_kill" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_death"
+            style="@style/TextStyle21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{game.stats.general.strDeath()}"
+            app:layout_constraintStart_toEndOf="@+id/tv_divider_1"
+            app:layout_constraintTop_toTopOf="@+id/tv_kill" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_divider_2"
+            style="@style/TextStyle19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/divider_slush"
+            app:layout_constraintStart_toEndOf="@+id/tv_death"
+            app:layout_constraintTop_toTopOf="@+id/tv_kill" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_assists"
+            style="@style/TextStyle15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{game.stats.general.strAssist()}"
+            app:layout_constraintStart_toEndOf="@+id/tv_divider_2"
+            app:layout_constraintTop_toTopOf="@+id/tv_kill" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_ratio"
+            style="@style/TextStyle16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@{game.stats.general.strContributionForKillRate()}"
+            app:layout_constraintStart_toStartOf="@+id/tv_kill"
+            app:layout_constraintTop_toBottomOf="@+id/tv_kill" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_item_1"
+            imageFromUrl="@{game.getItemUrl(0)}"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/pale_grey_two"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/iv_champ"
+            app:layout_constraintTop_toBottomOf="@id/tv_badge" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_item_2"
+            imageFromUrl="@{game.getItemUrl(1)}"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="2dp"
+            android:background="@color/pale_grey_two"
+            app:layout_constraintStart_toEndOf="@id/iv_item_1"
+            app:layout_constraintTop_toTopOf="@id/iv_item_1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_item_3"
+            imageFromUrl="@{game.getItemUrl(2)}"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="2dp"
+            android:background="@color/pale_grey_two"
+            app:layout_constraintStart_toEndOf="@id/iv_item_2"
+            app:layout_constraintTop_toTopOf="@id/iv_item_1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_item_4"
+            imageFromUrl="@{game.getItemUrl(3)}"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="2dp"
+            android:background="@color/pale_grey_two"
+            app:layout_constraintStart_toEndOf="@id/iv_item_3"
+            app:layout_constraintTop_toTopOf="@id/iv_item_1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_item_5"
+            imageFromUrl="@{game.getItemUrl(4)}"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="2dp"
+            android:background="@color/pale_grey_two"
+            app:layout_constraintStart_toEndOf="@id/iv_item_4"
+            app:layout_constraintTop_toTopOf="@id/iv_item_1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_item_6"
+            imageFromUrl="@{game.getItemUrl(5)}"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="2dp"
+            android:background="@color/pale_grey_two"
+            app:layout_constraintStart_toEndOf="@id/iv_item_5"
+            app:layout_constraintTop_toTopOf="@id/iv_item_1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_game_type"
+            style="@style/TextStyle17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@{game.gameType}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_champ" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_game_time"
+            style="@style/TextStyle18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@{game.calTime()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_game_type" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_multi_kill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@{game.stats.general.largestMultiKillString}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_item_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_item_1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+

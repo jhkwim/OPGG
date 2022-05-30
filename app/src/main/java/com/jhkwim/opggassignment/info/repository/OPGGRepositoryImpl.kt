@@ -1,7 +1,7 @@
 package com.jhkwim.opggassignment.info.repository
 
 import android.util.Log
-import com.google.gson.Gson
+import androidx.lifecycle.*
 import com.jhkwim.opggassignment.info.repository.db.DGameInfo
 import com.jhkwim.opggassignment.info.repository.db.DSummoner
 import com.jhkwim.opggassignment.info.repository.db.GameInfoDao
@@ -23,13 +23,19 @@ class OPGGRepositoryImpl(
         summonerDao.insertSummoner(DSummoner.from(result.summoner))
     }
 
-    override suspend fun getSummoner(): Summoner? {
-        val summoners = summonerDao.getSummoner()
-
-        Log.i("jhkim", "getSummoner : $summoners")
-
-
-        return if (summoners.isEmpty()) null else summoners[0].toSummoner()
+    override suspend fun getSummoner(): LiveData<Summoner?> {
+        return summonerDao.getSummoner().asLiveData().map {
+            if (it.isEmpty()) null else it[0].toSummoner()
+        }
+//
+//        Log.i("jhkim", "getSummoner : $summoners")
+//
+//        val ret = MediatorLiveData<Summoner?>()
+//        ret.addSource(summoners) {
+//            ret.value = if (it.isEmpty()) null else it[0].toSummoner()
+//        }
+//
+//        return ret
     }
 
     override suspend fun fetchGameInfo(summonerName: String, createDate: String?) {
@@ -38,11 +44,23 @@ class OPGGRepositoryImpl(
         gameInfoDao.insertGameInfo(DGameInfo.from(summonerName, gameInfo))
     }
 
-    override suspend fun getGameInfo(): GameInfo? {
-        val gameInfo = gameInfoDao.getGameInfo()
-        return if (gameInfo.isEmpty()) null else gameInfo[0].toSummoner()
+    override suspend fun getGameInfo(): LiveData<GameInfo?> {
+        return gameInfoDao.getGameInfo().asLiveData().map {
+            if (it.isEmpty()) null else it[0].toGameInfo()
+        }
+//
+//        val ret = MediatorLiveData<GameInfo?>()
+//        ret.addSource(gameInfo) {
+//            ret.value = if (it.isEmpty()) null else it[0].toGameInfo()
+//        }
+//
+//        return ret
     }
 
+    override suspend fun fetchAll(summonerName: String) {
+        fetchSummoner(summonerName)
+        fetchGameInfo(summonerName)
+    }
 
 
 }

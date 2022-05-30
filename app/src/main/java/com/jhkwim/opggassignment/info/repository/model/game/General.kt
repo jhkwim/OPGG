@@ -1,15 +1,24 @@
 package com.jhkwim.opggassignment.info.repository.model.game
 
 data class General(
-    val kill: Int,
-    val death: Int,
     val assist: Int,
-    val kdaString: String,
-    val cs: Int,
-    val csPerMin: Float,
     val contributionForKillRate: String,
+    val cs: Int,
+    val csPerMin: Double,
+    val death: Int,
     val goldEarned: Int,
-    val totalDamageDealToChampions: Int,
+    val kdaString: String,
+    val kill: Int,
     val largestMultiKillString: String,
-    val opScoreBadge: String
-)
+    val opScoreBadge: String,
+    val totalDamageDealtToChampions: Int
+) {
+
+    fun strKill() = "$kill"
+
+    fun strDeath() = "$death"
+
+    fun strAssist() = "$assist"
+
+    fun strContributionForKillRate() = "킬관여 $contributionForKillRate"
+}
